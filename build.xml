@@ -517,21 +517,6 @@
 				<include name="startup/**"/>
 			</fileset>
 		</copy>
-		<copy todir="${jar.location}/jars">
-			<fileset dir="${lib.dir}/default-plugins">
-				<exclude name="MacOSX.jar"/>
-			</fileset>
-		</copy>
-		<contrib:if>
-			<os family="mac"/>
-			<contrib:then>
-				<copy todir="${jar.location}/jars">
-					<fileset dir="${lib.dir}/default-plugins">
-						<include name="MacOSX.jar"/>
-					</fileset>
-				</copy>
-			</contrib:then>
-		</contrib:if>
 	</target>
 
 	<target name="build-exe-launcher"
