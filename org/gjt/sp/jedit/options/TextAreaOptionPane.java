@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
 import org.gjt.sp.jedit.textarea.AntiAlias;
+import org.gjt.sp.jedit.textarea.TextAreaPainter;
 import org.gjt.sp.util.GenericGUIUtilities;
 import org.gjt.sp.jedit.jEdit;
 import org.gjt.sp.jedit.GUIUtilities;
@@ -249,6 +250,10 @@ public class TextAreaOptionPane extends AbstractOptionPane
 			"options.textarea.insertCompletionWithDigit"));
 		insertCompletionWithDigit.setSelected(jEdit.getBooleanProperty("insertCompletionWithDigit"));
 		addComponent(insertCompletionWithDigit);
+
+		notePad = new JCheckBox("Enable \"Notepad\"-like style appearance");
+		notePad.setSelected(TextAreaPainter.getNotePad());
+		addComponent(notePad);
 	} //}}}
 
 	//{{{ _save() method
@@ -304,6 +309,7 @@ public class TextAreaOptionPane extends AbstractOptionPane
 		jEdit.setBooleanProperty("stripTrailingEOL", stripTrailingEOL.isSelected());
 		jEdit.setBooleanProperty("completeFromAllBuffers", completeFromAllBuffers.isSelected());
 		jEdit.setBooleanProperty("insertCompletionWithDigit", insertCompletionWithDigit.isSelected());
+		TextAreaPainter.setNotePad(notePad.isSelected());
 		jEdit.setIntegerProperty("options.textarea.lineSpacing",
 					 Integer.valueOf(lineSpacing.getText()));
 	} //}}}
@@ -339,6 +345,7 @@ public class TextAreaOptionPane extends AbstractOptionPane
 	private JCheckBox stripTrailingEOL;
 	private JCheckBox completeFromAllBuffers;
 	private JCheckBox insertCompletionWithDigit;
+	private JCheckBox notePad;
 	private JTextField lineSpacing;
 	//}}}
 

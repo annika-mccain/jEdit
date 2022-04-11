@@ -984,6 +984,16 @@ public class TextAreaPainter extends JComponent implements TabExpander
 	RenderingHints renderingHints;
 	boolean selectionFg;
 	Color selectionFgColor;
+	static boolean notePad = false;
+
+	public static void setNotePad(boolean b){
+		notePad = b;
+	}
+
+	public static Boolean getNotePad(){
+		return notePad;
+	}
+
 	// should try to use this as little as possible.
 	FontMetrics fm;
 	int extraLineSpacing;
@@ -1148,6 +1158,11 @@ public class TextAreaPainter extends JComponent implements TabExpander
 				gfx.setColor(bgColor);
 				gfx.fillRect(0,y,getWidth(),getLineHeight());
 			} //}}}
+
+			if (getNotePad()) {
+				gfx.setColor(Color.blue);
+				gfx.drawLine(0, y + getLineHeight() -1, getWidth(), y + getLineHeight() -1);
+			}
 
 			//{{{ Paint token backgrounds
 			ChunkCache.LineInfo lineInfo = textArea.chunkCache.getLineInfo(screenLine);
